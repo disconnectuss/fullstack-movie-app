@@ -4,20 +4,20 @@ const postMovies = require("./method/postMovies");
 const deleteMovies = require("./method/deleteMovies");
 
 const server = http.createServer((req, res) => {
+  res.setHeader("Content-Type", "application/json");
   switch (req.method) {
     case "GET":
-      return res.end(getMovies(req, res));
+      getMovies(req, res);
+      break;
     case "POST":
-      return res.end(postMovies(req, res));
+      postMovies(req, res);
+      break;
     case "DELETE":
-      return res.end(deleteMovies(req, res));
+      deleteMovies(req, res);
+      break;
     default:
       res.statusCode = 404;
-
-      res.setHeader("Content-Type", "application/json");
-
-      res.write(JSON.stringify({ messsage: "not found" }));
-      return res.end();
+      res.end();
   }
 });
 
