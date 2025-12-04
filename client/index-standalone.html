@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <!-- Sayfa karakterini UTF-8 olarak ayarlıyoruz (Türkçe karakter desteği) -->
+    <meta charset="UTF-8" />
+
+    <!-- Mobil cihazlar için viewport ayarı (responsive tasarım) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Sayfa başlığı (tarayıcı sekmesinde görünür) -->
+    <title>Film Veritabanı - Standalone (Backend Gerektirmez)</title>
+
+    <!-- CSS dosyamızı bağlıyoruz -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Ana container - tüm içeriği saracak -->
+    <div class="container">
+      <!-- Sayfa başlığı -->
+      <header>
+        <h1>🎬 Film Veritabanı</h1>
+        <p>Standalone - Backend Gerektirmez (LocalStorage Kullanır)</p>
+      </header>
+
+      <!-- Film ekleme formu bölümü -->
+      <section class="add-movie-section">
+        <h2>Yeni Film Ekle</h2>
+
+        <!-- Film ekleme formu -->
+        <form id="addMovieForm">
+          <!-- İlk satır: Başlık ve Yıl -->
+          <div class="form-row">
+            <!-- Film başlığı input -->
+            <div class="form-group">
+              <label for="title">Film Adı:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Örn: Inception"
+                required
+              />
+            </div>
+
+            <!-- Film yılı input -->
+            <div class="form-group">
+              <label for="year">Yıl:</label>
+              <input
+                type="number"
+                id="year"
+                name="year"
+                placeholder="2010"
+                min="1900"
+                max="2099"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- İkinci satır: Yönetmen ve Rating -->
+          <div class="form-row">
+            <!-- Yönetmen input -->
+            <div class="form-group">
+              <label for="director">Yönetmen:</label>
+              <input
+                type="text"
+                id="director"
+                name="director"
+                placeholder="Christopher Nolan"
+                required
+              />
+            </div>
+
+            <!-- Rating input -->
+            <div class="form-group">
+              <label for="rating">Puan (0-10):</label>
+              <input
+                type="number"
+                id="rating"
+                name="rating"
+                placeholder="8.5"
+                min="0"
+                max="10"
+                step="0.1"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Üçüncü satır: Tür -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="genre">Tür (virgülle ayırın):</label>
+              <input
+                type="text"
+                id="genre"
+                name="genre"
+                placeholder="Action, Sci-Fi, Thriller"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Dördüncü satır: Oyuncular -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="actors">Oyuncular (virgülle ayırın):</label>
+              <input
+                type="text"
+                id="actors"
+                name="actors"
+                placeholder="Leonardo DiCaprio, Tom Hardy"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Beşinci satır: Açıklama -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="description">Açıklama:</label>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Film hakkında kısa açıklama..."
+                rows="3"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Altıncı satır: Poster ve Trailer URL -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="poster">Poster URL:</label>
+              <input
+                type="url"
+                id="poster"
+                name="poster"
+                placeholder="https://..."
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="trailer">Trailer URL:</label>
+              <input
+                type="url"
+                id="trailer"
+                name="trailer"
+                placeholder="https://youtube.com/..."
+              />
+            </div>
+          </div>
+
+          <!-- Form butonları -->
+          <div class="form-actions">
+            <!-- Submit butonu - formu gönderir -->
+            <button type="submit" class="btn btn-primary">Film Ekle</button>
+            <!-- Reset butonu - formu temizler -->
+            <button type="reset" class="btn btn-secondary">Temizle</button>
+            <!-- Verileri sıfırlama butonu -->
+            <button type="button" class="btn btn-danger" id="resetDataBtn">
+              🔄 Verileri Sıfırla
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Film listesi bölümü -->
+      <section class="movies-section">
+        <!-- Bölüm başlığı ve film sayısı -->
+        <div class="section-header">
+          <h2>Film Listesi</h2>
+          <!-- Film sayısı buraya JavaScript ile eklenecek -->
+          <span class="movie-count" id="movieCount">0 film</span>
+        </div>
+
+        <!-- Arama ve filtreleme alanı -->
+        <div class="filter-section">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="🔍 Film ara (isim, yönetmen, oyuncu...)"
+          />
+        </div>
+
+        <!-- Film kartlarının gösterileceği grid container -->
+        <!-- İçerik JavaScript ile doldurulacak -->
+        <div class="movies-grid" id="moviesGrid">
+          <!-- Film kartları buraya dinamik olarak eklenecek -->
+        </div>
+      </section>
+    </div>
+
+    <!-- JavaScript dosyamızı sayfa sonunda yüklüyoruz -->
+    <!-- Bu sayede HTML elemanları yüklendikten sonra JS çalışır -->
+    <script src="script-standalone.js"></script>
+  </body>
+</html>
